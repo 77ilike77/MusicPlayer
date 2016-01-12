@@ -2,14 +2,19 @@
 
 MusicPlayer* MusicPlayer::mMusicPlayer = NULL;
 
-MusicPlayer::MusicPlayer(QWidget *parent) : QMainWindow(parent)
+MusicPlayer::MusicPlayer(QObject *parent) : QObject(parent)
 {
-    setWindowTitle("Music Player");
     mQMediaPlayer = new QMediaPlayer();
-    mQMediaPlayer->setMedia(QUrl("file:///home/jinpei/QT/QtProject/MusicPlayer/Sleep Away.mp3"));
-    mQMediaPlayer->setVolume(80);
-}
+    mQMediaPlayer->setVolume(100);
 
+    mList = new QMediaPlaylist();
+    mList->setPlaybackMode(QMediaPlaylist::Loop);
+    mQMediaPlayer->setPlaylist(mList);
+
+    connect(mQMediaPlayer, SIGNAL(stateChanged(QMediaPlayer::State)), SIGNAL(stateChanged()));
+    connect(mQMediaPlayer, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)), SIGNAL(statusChanged()));
+    connect(mQMediaPlayer, SIGNAL(error(QMediaPlayer::Error)), SIGNAL(errorChanged()));
+}
 
 void MusicPlayer::play()
 {
@@ -18,14 +23,40 @@ void MusicPlayer::play()
 
 void MusicPlayer::pause()
 {
-    if (mQMediaPlayer->state() == QMediaPlayer::PlayingState) {
-        mQMediaPlayer->pause();
+    mQMediaPlayer->pause();
+}
+
+void MusicPlayer::stop()
+{
+    mQMediaPlayer->stop();
+}
+
+void MusicPlayer::next()
+{
+    mList->next();
+}
+
+void MusicPlayer::add(QList<QUrl> filePath)
+{
+    for (int i = 0; i < filePath.length(); i++)
+    {
+        mList->addMedia(filePath.at(i));
     }
 }
 
 QMediaPlayer::State MusicPlayer::state()
 {
     return mQMediaPlayer->state();
+}
+
+QMediaPlayer::MediaStatus MusicPlayer::status()
+{
+    return mQMediaPlayer->mediaStatus();
+}
+
+QMediaPlayer::Error MusicPlayer::error()
+{
+    return mQMediaPlayer->error();
 }
 
 MusicPlayer* MusicPlayer::getInstance()
