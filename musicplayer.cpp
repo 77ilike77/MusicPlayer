@@ -11,6 +11,10 @@ MusicPlayer::MusicPlayer(QObject *parent) : QObject(parent)
     mList->setPlaybackMode(QMediaPlaylist::Loop);
     mQMediaPlayer->setPlaylist(mList);
 
+    playlistModel = new PlayListModel(this);
+    playlistModel->setPlaylist(mList);
+
+
     connect(mQMediaPlayer, SIGNAL(stateChanged(QMediaPlayer::State)), SIGNAL(stateChanged()));
     connect(mQMediaPlayer, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)), SIGNAL(statusChanged()));
     connect(mQMediaPlayer, SIGNAL(error(QMediaPlayer::Error)), SIGNAL(errorChanged()));

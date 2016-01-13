@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
+#include <QListView>
+#include "playlistmodel.h"
 
 class MusicPlayer : public QObject
 {
@@ -31,6 +33,10 @@ public:
     QMediaPlayer::State state();
     QMediaPlayer::MediaStatus status();
     QMediaPlayer::Error error();
+
+    void setPlayListModel(QListView* playlist);
+
+    PlayListModel *playlistModel;
 
 private:
     static MusicPlayer* mMusicPlayer;

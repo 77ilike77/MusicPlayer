@@ -3,11 +3,13 @@ import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.0
 
 import MusicPlayer 1.0
+import PlayListDelegate 1.0
 
 Item {
     id: playerContainer
 
     Row {
+        id: panel
         Button {
             id: playAndPause
             text:MusicPlayer.state === MusicPlayer.PlayingState ? "pause" : "play"
@@ -63,10 +65,28 @@ Item {
         Text {
             text: MusicPlayer.state
         }
+    }
 
-        Text {
-            text: ""
+    ListView {
+        objectName: "playListObject"
+        anchors.top: panel.bottom
+        width: panel.width
+        height: 300
+
+        model: playlistmodel
+
+        delegate:playlistdelegate
+
+        Rectangle {
+            id: background
+            anchors.fill: parent
+            color: "cyan"
         }
     }
+
+    PlayListDelegate {
+        id: playlistdelegate
+    }
+
 }
 

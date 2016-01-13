@@ -3,7 +3,9 @@ TEMPLATE = app
 QT += qml quick widgets multimedia
 
 SOURCES += main.cpp \
-    musicplayer.cpp
+    musicplayer.cpp \
+    playlistmodel.cpp \
+    playlistdelegate.cpp
 
 RESOURCES += qml.qrc
 
@@ -14,5 +16,7 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    musicplayer.h
+    musicplayer.h \
+    playlistmodel.h \
+    playlistdelegate.h
 
