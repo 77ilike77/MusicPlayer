@@ -48,6 +48,12 @@ void MusicPlayer::add(QList<QUrl> filePath)
     }
 }
 
+void MusicPlayer::remove(int index)
+{
+    mList->removeMedia(index);
+    qDebug("remove %d", index);
+}
+
 QMediaPlayer::State MusicPlayer::state()
 {
     return mQMediaPlayer->state();

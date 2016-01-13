@@ -3,7 +3,6 @@ import QtQuick.Controls 1.2
 import QtQuick.Dialogs 1.0
 
 import MusicPlayer 1.0
-import PlayListDelegate 1.0
 
 Item {
     id: playerContainer
@@ -72,21 +71,26 @@ Item {
         anchors.top: panel.bottom
         width: panel.width
         height: 300
-
         model: playlistmodel
-
         delegate:playlistdelegate
-
-        Rectangle {
-            id: background
-            anchors.fill: parent
-            color: "cyan"
-        }
     }
 
-    PlayListDelegate {
+    Component {
         id: playlistdelegate
-    }
+            Row {
+                width: panel.width
+                spacing: 15
 
+                Text {
+                    text: playlistmodel.data(playlistmodel.index(index,1)) + 1
+                }
+                Button {
+                    text: playlistmodel.data(playlistmodel.index(index,0))
+                    onClicked: {
+                        MusicPlayer.remove(index);
+                    }
+                }
+            }
+    }
 }
 

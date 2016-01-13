@@ -29,6 +29,7 @@ public:
     Q_INVOKABLE void next();
 
     Q_INVOKABLE void add(QList<QUrl> filePath);
+    Q_INVOKABLE void remove(int index);
 
     QMediaPlayer::State state();
     QMediaPlayer::MediaStatus status();

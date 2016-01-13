@@ -4,8 +4,7 @@ QT += qml quick widgets multimedia
 
 SOURCES += main.cpp \
     musicplayer.cpp \
-    playlistmodel.cpp \
-    playlistdelegate.cpp
+    playlistmodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -17,6 +16,5 @@ include(deployment.pri)
 
 HEADERS += \
     musicplayer.h \
-    playlistmodel.h \
-    playlistdelegate.h
+    playlistmodel.h
 

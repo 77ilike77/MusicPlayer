@@ -10,6 +10,7 @@ QT_END_NAMESPACE
 class PlayListModel : public QAbstractItemModel
 {
     Q_OBJECT
+    Q_ENUMS(Qt::ItemDataRole)
 public:
     PlayListModel(QObject *parent = 0);
 

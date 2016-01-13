@@ -59,12 +59,21 @@ QVariant PlayListModel::data(const QModelIndex &index, int role) const
 {
     if (index.isValid() && role == Qt::DisplayRole) {
         QVariant value = m_data[index];
-        if (!value.isValid() && index.column() == 0) {
-            QUrl location = m_playlist->media(index.row()).canonicalUrl();
-            return QFileInfo(location.path()).fileName();
+        if (!value.isValid()) {
+            if (index.column() == 0) {
+                QUrl location = m_playlist->media(index.row()).canonicalUrl();
+                qDebug("data1");
+                return QFileInfo(location.path()).fileName();
+            }
+            else if (index.column() == 1)
+            {
+                return index.row();
+            }
         }
+        qDebug("data2");
         return value;
     }
+    qDebug("data3 %d,%d",index.row(),index.column());
     return QVariant();
 }
 
@@ -92,12 +101,12 @@ void PlayListModel::endInsertItems()
 void PlayListModel::beginRemoveItems(int start, int end)
 {
     beginRemoveRows(QModelIndex(), start, end);
-    qDebug("beginRemoveItems");
+    qDebug("beginRemoveItems at %d,%d");
 }
 
 void PlayListModel::endRemoveItems()
 {
-    endInsertRows();
+    endRemoveRows();
     qDebug("endRemoveItems");
 }
 
