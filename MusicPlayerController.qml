@@ -77,20 +77,31 @@ Item {
 
     Component {
         id: playlistdelegate
-            Row {
-                width: panel.width
-                spacing: 15
 
-                Text {
-                    text: playlistmodel.data(playlistmodel.index(index,1)) + 1
-                }
-                Button {
-                    text: playlistmodel.data(playlistmodel.index(index,0))
+        Row {
+            id: row
+            width: panel.width
+            height: 20
+            spacing: 15
+
+            Text {
+                text: playlistmodel.data(playlistmodel.index(index,1)) + 1
+            }
+            Text {
+                text: playlistmodel.data(playlistmodel.index(index,0))
+                MouseArea {
+                    anchors.fill: parent
+                    Rectangle {
+                        anchors.fill: parent
+                        color: "red"
+                    }
+
                     onClicked: {
                         MusicPlayer.remove(index);
                     }
                 }
             }
+        }
     }
 }
 

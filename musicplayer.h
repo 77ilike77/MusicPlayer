@@ -5,7 +5,7 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QListView>
-#include "playlistmodel.h"
+#include "musicplaylistmodel.h"
 
 class MusicPlayer : public QObject
 {
@@ -37,7 +37,7 @@ public:
 
     void setPlayListModel(QListView* playlist);
 
-    PlayListModel *playlistModel;
+    MusicPlayListModel *playlistModel;
 
 private:
     static MusicPlayer* mMusicPlayer;

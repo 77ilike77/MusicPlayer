@@ -62,7 +62,6 @@ QVariant PlayListModel::data(const QModelIndex &index, int role) const
         if (!value.isValid()) {
             if (index.column() == 0) {
                 QUrl location = m_playlist->media(index.row()).canonicalUrl();
-                qDebug("data1");
                 return QFileInfo(location.path()).fileName();
             }
             else if (index.column() == 1)
@@ -70,10 +69,8 @@ QVariant PlayListModel::data(const QModelIndex &index, int role) const
                 return index.row();
             }
         }
-        qDebug("data2");
         return value;
     }
-    qDebug("data3 %d,%d",index.row(),index.column());
     return QVariant();
 }
 

@@ -10,8 +10,13 @@ QT_END_NAMESPACE
 class PlayListModel : public QAbstractItemModel
 {
     Q_OBJECT
-    Q_ENUMS(Qt::ItemDataRole)
 public:
+    enum PlayListModelRoles {
+        IndexRole = Qt::UserRole + 1,
+        NameRole,
+        DurationRole
+    };
+
     PlayListModel(QObject *parent = 0);
 
     void setPlaylist(QMediaPlaylist *playlist);
