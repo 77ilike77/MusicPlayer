@@ -5,11 +5,10 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Music Player")
 
-    MusicPlayerController {
-
+    MusicPlayerPanel {
+        anchors.fill: parent
     }
-
 }
 

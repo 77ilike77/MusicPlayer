@@ -20,6 +20,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("playlistmodel", MusicPlayer::getInstance()->playlistModel);
     qmlRegisterSingletonType<MusicPlayer>("MusicPlayer", 1, 0, "MusicPlayer", getMusicPlayerInstance);
 
+    app.setFont(QFont("Microsoft YaHei"));
+
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();

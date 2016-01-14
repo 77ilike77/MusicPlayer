@@ -1,6 +1,29 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>MusicPlayerController.qml</file>
+        <file>all_background.png</file>
+        <file>back.png</file>
+        <file>back_press.png</file>
+        <file>begin.png</file>
+        <file>begin_press.png</file>
+        <file>controller_panel_background.png</file>
+        <file>go.png</file>
+        <file>go_press.png</file>
+        <file>main_top_bar_bg.png</file>
+        <file>MusicPlayerPanel.qml</file>
+        <file>pause.png</file>
+        <file>pause_press.png</file>
+        <file>repeat.png</file>
+        <file>repeat_press.png</file>
+        <file>shuffl.png</file>
+        <file>MusicPlayerControllerPanel.qml</file>
+        <file>MusicPlayerListPanel.qml</file>
+        <file>play_list_background.png</file>
+        <file>more.png</file>
+        <file>more_press.png</file>
+        <file>MusicPlayerListItem.qml</file>
+        <file>MusicPlayerHeaderPanel.qml</file>
+        <file>pan.png</file>
+        <file>header_background.png</file>
     </qresource>
 </RCC>

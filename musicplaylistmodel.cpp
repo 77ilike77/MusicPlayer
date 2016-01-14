@@ -71,29 +71,24 @@ QVariant MusicPlayListModel::data(const QModelIndex & index, int role) const
 void MusicPlayListModel::beginInsertItems(int start, int end)
 {
     beginInsertRows(QModelIndex(), start, end);
-    qDebug("beginInsertItems at %d,%d",start ,end);
 }
 
 void MusicPlayListModel::endInsertItems()
 {
     endInsertRows();
-    qDebug("endInsertItems");
 }
 
 void MusicPlayListModel::beginRemoveItems(int start, int end)
 {
     beginRemoveRows(QModelIndex(), start, end);
-    qDebug("beginRemoveItems at %d,%d");
 }
 
 void MusicPlayListModel::endRemoveItems()
 {
     endRemoveRows();
-    qDebug("endRemoveItems");
 }
 
 void MusicPlayListModel::changeItems(int start, int end)
 {
     emit dataChanged(index(start,0), index(end,1));
-    qDebug("changeItems");
 }

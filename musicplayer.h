@@ -14,22 +14,40 @@ class MusicPlayer : public QObject
     Q_ENUMS(QMediaPlayer::State)
     Q_ENUMS(QMediaPlayer::MediaStatus)
     Q_ENUMS(QMediaPlayer::Error)
+    Q_ENUMS(MusicPlayer::PlaybackMode)
 
     Q_PROPERTY(QMediaPlayer::State state READ state NOTIFY stateChanged)
     Q_PROPERTY(QMediaPlayer::MediaStatus status READ status NOTIFY statusChanged)
     Q_PROPERTY(QMediaPlayer::Error error READ error NOTIFY errorChanged)
 
+    Q_PROPERTY(int currentIndex READ currentIndex NOTIFY currentIndexChanged)
+    Q_PROPERTY(QMediaPlaylist::PlaybackMode mode READ mode NOTIFY modeChanged)
+
 public:
+    enum PlaybackMode {
+        CurrentItemInLoop = QMediaPlaylist::CurrentItemInLoop,
+        Loop = QMediaPlaylist::Loop,
+        Random = QMediaPlaylist::Random
+    };
+
     static MusicPlayer* getInstance();
 
     Q_INVOKABLE void play();
+    Q_INVOKABLE void play(int index);
     Q_INVOKABLE void pause();
     Q_INVOKABLE void stop();
 
     Q_INVOKABLE void next();
+    Q_INVOKABLE void previous();
+
+    Q_INVOKABLE void changePlaybackMode(QMediaPlaylist::PlaybackMode mode);
+    Q_INVOKABLE void changePlaybackMode();
+    Q_INVOKABLE QMediaPlaylist::PlaybackMode mode();
 
     Q_INVOKABLE void add(QList<QUrl> filePath);
     Q_INVOKABLE void remove(int index);
+
+    int currentIndex() const;
 
     QMediaPlayer::State state();
     QMediaPlayer::MediaStatus status();
@@ -61,6 +79,8 @@ signals:
     void mediaChanged(int start, int end);
     void loaded();
     void loadFailed();
+
+    void modeChanged(QMediaPlaylist::PlaybackMode mode);
 
 public slots:
 };
