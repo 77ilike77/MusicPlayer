@@ -19,6 +19,8 @@ MusicPlayer::MusicPlayer(QObject *parent) : QObject(parent)
     connect(mQMediaPlayer, SIGNAL(error(QMediaPlayer::Error)), SIGNAL(errorChanged()));
     connect(mList, SIGNAL(currentIndexChanged(int)), SIGNAL(currentIndexChanged(int)));
     connect(mList, SIGNAL(playbackModeChanged(QMediaPlaylist::PlaybackMode)), SIGNAL(modeChanged(QMediaPlaylist::PlaybackMode)));
+    connect(mQMediaPlayer, SIGNAL(positionChanged(qint64)), SIGNAL(currentPositionChanged(qint64)));
+    connect(mQMediaPlayer, SIGNAL(durationChanged(qint64)), SIGNAL(currentDurationChanged(qint64)));
 }
 
 void MusicPlayer::play()
@@ -56,7 +58,15 @@ void MusicPlayer::previous()
     mList->previous();
 }
 
+void MusicPlayer::seek(qint64 pos)
+{
+    mQMediaPlayer->setPosition(pos);
+}
 
+bool MusicPlayer::isSeekable()
+{
+    return mQMediaPlayer->isSeekable();
+}
 
 void MusicPlayer::changePlaybackMode(QMediaPlaylist::PlaybackMode mode)
 {
@@ -102,6 +112,16 @@ void MusicPlayer::remove(int index)
 int MusicPlayer::currentIndex() const
 {
     return mList->currentIndex();
+}
+
+qint64 MusicPlayer::currentPosition() const
+{
+    return mQMediaPlayer->position();
+}
+
+qint64 MusicPlayer::currentDuration() const
+{
+    return mQMediaPlayer->duration();
 }
 
 QMediaPlayer::State MusicPlayer::state()

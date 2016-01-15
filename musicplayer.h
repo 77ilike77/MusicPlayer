@@ -21,6 +21,8 @@ class MusicPlayer : public QObject
     Q_PROPERTY(QMediaPlayer::Error error READ error NOTIFY errorChanged)
 
     Q_PROPERTY(int currentIndex READ currentIndex NOTIFY currentIndexChanged)
+    Q_PROPERTY(qint64 currentPosition READ currentPosition NOTIFY currentPositionChanged)
+    Q_PROPERTY(qint64 currentDuration READ currentDuration NOTIFY currentDurationChanged)
     Q_PROPERTY(QMediaPlaylist::PlaybackMode mode READ mode NOTIFY modeChanged)
 
 public:
@@ -40,6 +42,9 @@ public:
     Q_INVOKABLE void next();
     Q_INVOKABLE void previous();
 
+    Q_INVOKABLE void seek(qint64 pos);
+    Q_INVOKABLE bool isSeekable();
+
     Q_INVOKABLE void changePlaybackMode(QMediaPlaylist::PlaybackMode mode);
     Q_INVOKABLE void changePlaybackMode();
     Q_INVOKABLE QMediaPlaylist::PlaybackMode mode();
@@ -48,6 +53,8 @@ public:
     Q_INVOKABLE void remove(int index);
 
     int currentIndex() const;
+    qint64 currentPosition() const;
+    qint64 currentDuration() const;
 
     QMediaPlayer::State state();
     QMediaPlayer::MediaStatus status();
@@ -81,6 +88,8 @@ signals:
     void loadFailed();
 
     void modeChanged(QMediaPlaylist::PlaybackMode mode);
+    void currentPositionChanged(qint64 position);
+    void currentDurationChanged(qint64 position);
 
 public slots:
 };
