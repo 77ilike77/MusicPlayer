@@ -21,6 +21,9 @@ MusicPlayer::MusicPlayer(QObject *parent) : QObject(parent)
     connect(mList, SIGNAL(playbackModeChanged(QMediaPlaylist::PlaybackMode)), SIGNAL(modeChanged(QMediaPlaylist::PlaybackMode)));
     connect(mQMediaPlayer, SIGNAL(positionChanged(qint64)), SIGNAL(currentPositionChanged(qint64)));
     connect(mQMediaPlayer, SIGNAL(durationChanged(qint64)), SIGNAL(currentDurationChanged(qint64)));
+
+    mMusicAnalyst = new MusicAnalyst();
+    mMusicAnalyst->setMediaPlayer(mQMediaPlayer);
 }
 
 void MusicPlayer::play()

@@ -6,6 +6,7 @@
 #include <QMediaPlaylist>
 #include <QListView>
 #include "musicplaylistmodel.h"
+#include "musicanalyst.h"
 
 class MusicPlayer : public QObject
 {
@@ -66,6 +67,7 @@ public:
 
 private:
     static MusicPlayer* mMusicPlayer;
+    MusicAnalyst* mMusicAnalyst;
     QMediaPlayer* mQMediaPlayer;
     QMediaPlaylist* mList;
 

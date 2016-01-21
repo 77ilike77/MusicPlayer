@@ -6,7 +6,8 @@ SOURCES += main.cpp \
     musicplayer.cpp \
     playlistmodel.cpp \
     musicplaylistitem.cpp \
-    musicplaylistmodel.cpp
+    musicplaylistmodel.cpp \
+    musicanalyst.cpp
 
 RESOURCES += qml.qrc
 
@@ -20,5 +21,6 @@ HEADERS += \
     musicplayer.h \
     playlistmodel.h \
     musicplaylistitem.h \
-    musicplaylistmodel.h
+    musicplaylistmodel.h \
+    musicanalyst.h
 
